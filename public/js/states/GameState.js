@@ -3,8 +3,8 @@ var SpaceHipster = SpaceHipster || {};
 SpaceHipster.GameState = {
 	init: function() {
 		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-		
-		
+
+		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 	},
 	preload: function() {
 		this.load.image('space', 'assets/images/space.png');
