@@ -23,6 +23,12 @@ SpaceHipster.GameState = {
 		this.background = this.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'space');
 
 		this.background.autoScroll(0, 30);
+
+		this.player = this.add.sprite(this.game.world.centerX, this.game.world.height - 50, 'player');
+		this.player.anchor.setTo(0.5);
+		this.game.physics.arcade.enable(this.player);
+		this.player.body.collideWorldBounds = true;
+		
 	},
 	update: function() {
 
