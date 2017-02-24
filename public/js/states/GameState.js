@@ -29,6 +29,8 @@ SpaceHipster.GameState = {
 		this.game.physics.arcade.enable(this.player);
 		this.player.body.collideWorldBounds = true;
 
+		this.initBullets();
+		this.shootingTimer = this.game.time.events.loop(Phaser.Timer.SECOND/5, this.createPlayerBullet, this);
 	},
 	update: function() {
 		this.player.body.velocity.x = 0;
@@ -38,5 +40,19 @@ SpaceHipster.GameState = {
 			var direction = targetX >= this.game.world.centerX ? 1 : -1;
 			this.player.body.velocity.x = direction * this.PLAYER_SPEED;
 		}
+	},
+	initBullets: function() {
+		this.playerBullets = this.add.group();
+		this.playerBullets.enableBody = true;
+	},
+	createPlayerBullet: function() {
+		var bullet = this.playerBullets.getFirstExists(false);
+
+		if(!bullet) {
+			console.log('create bullet');
+		} else {
+			// reset position
+		}
+		// set velocity
 	}
 }
