@@ -26,4 +26,10 @@ SpaceHipster.Enemy.prototype.update = function() {
 	if(this.top > this.game.world.height) {
 		this.kill();
 	}
-}
+};
+
+SpaceHipster.Enemy.prototype.damage = function(amount) {
+	Phaser.Sprite.prototype.damage.call(this, amount);
+
+	this.play('getHit');
+};
