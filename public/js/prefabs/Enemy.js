@@ -2,8 +2,9 @@ var SpaceHipster = SpaceHipster || {};
 
 SpaceHipster.Enemy = function(game, x, y, key, health, enemyBullets) {
 	Phaser.Sprite.call(this, game, x, y, key);
+	this.game = game;
 
-	this.game.physics.arcade(this);
+	this.game.physics.arcade.enable(this);
 
 	this.animations.add('getHit', [0, 1, 2, 1, 0], 25, false);
 	this.anchor.setTo(0.5);
