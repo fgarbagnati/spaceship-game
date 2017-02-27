@@ -24,4 +24,8 @@ SpaceHipster.Enemy.prototype.update = function() {
 		this.x = 0.95 * this.game.world.width - 2;
 		this.body.velocity.x *= -1;
 	}
+
+	if(this.top > this.game.world.height) {
+		this.kill();
+	}
 }
