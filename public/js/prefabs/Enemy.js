@@ -9,6 +9,11 @@ SpaceHipster.Enemy = function(game, x, y, key, health, enemyBullets) {
 	this.health = health; 
 
 	this.enemyBullets = enemyBullets;
+
+	this.enemyTimer = this.game.time.create(false);
+	this.enemyTimer.start();
+
+	this.scheduleShooting();
 };
 
 SpaceHipster.Enemy.prototype = Object.create(Phaser.Sprite.prototype);
@@ -41,4 +46,23 @@ SpaceHipster.Enemy.prototype.damage = function(amount) {
 		emitter.gravity = 0;
 		emitter.start(true, 500, null, 100);
 	}
+};
+
+SpaceHipster.Enemy.prototype.scheduleShooting = function() {
+	this.shoot();
+
+	this.enemyTimer.add(Phaser.Timer.SECOND * 2, this.scheduleShooting, this);
+};
+
+SpaceHipster.Enemy.prototype.shoot = function() {
+	var bullet = this.enemyBullets.getFirstExists(false);
+
+	if(!bullet) {
+		bullet = new SpaceHipster.EnemyBullet(this.game, this.x, this.bottom);
+		this.enemyBullets.add(bullet);
+	} else {
+		bullet.reset(this.x, this.y);
+	}
+
+	bullet.body.velocity.y = 100;
 };
