@@ -53,3 +53,16 @@ SpaceHipster.Enemy.prototype.scheduleShooting = function() {
 
 	this.enemyTimer.add(Phaser.Timer.SECOND * 2, this.scheduleShooting, this);
 };
+
+SpaceHipster.Enemy.prototype.shoot = function() {
+	var bullet = this.enemyBullets.getFirstExists(false);
+
+	if(!bullet) {
+		bullet = new SpaceHipster.EnemyBullet(this.game, this.x, this.bottom);
+		this.enemyBullets.add(bullet);
+	} else {
+		bullet.reset(this.x, this.y);
+	}
+
+	bullet.body.velocity.y = 100;
+};
