@@ -51,7 +51,7 @@ SpaceHipster.Enemy.prototype.damage = function(amount) {
 SpaceHipster.Enemy.prototype.reset = function(x, y, health, key, scale, speedX, speedY) {
 	Phaser.Sprite.prototype.reset.call(this, x, y, health);
 
-	this.setTexture(key);
+	this.loadTexture(key);
 	this.scale.setTo(scale);
 	this.body.velocity.x = speedX;
 	this.body.velocity.y = speedY;
