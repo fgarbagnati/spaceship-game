@@ -88,6 +88,7 @@ SpaceHipster.GameState = {
 		enemy.reset(x, y, health, key, scale, speedX, speedY);
 	},
 	loadLevel: function() {
+		this.currentEnemyIndex = 0;
 		this.levelData = {
 			"duration": 35,
 			"enemies": [
@@ -129,5 +130,20 @@ SpaceHipster.GameState = {
 				}
 			]
 		};
+
+		this.scheduleNextEnemy();
+	},
+	scheduleNextEnemy: function() {
+		var nextEnemy = this.levelData.enemies[this.currentEnemyIndex];
+
+		if(nextEnemy) {
+			var nextTime = 1000 * (nextEnemy.time - (this.currentEnemyIndex == 0 ? 0 : this.levelData.enemies[this.currentEnemyIndex - 1]));
+			this.nextEnemyTimer = this.game.time.events.add(nextTime, function() {
+				this.createEnemy(nextEnemy.x * this.game.world.width, -100, nextEnemy.health, nextEnemy.key, nextEnemy.scale, nextEnemy.speedX, nextEnemy.speedY);
+
+				this.currentEnemyIndex++;
+				this.scheduleNextEnemy();
+			}, this);
+		}
 	}
 }
