@@ -137,7 +137,7 @@ SpaceHipster.GameState = {
 		var nextEnemy = this.levelData.enemies[this.currentEnemyIndex];
 
 		if(nextEnemy) {
-			var nextTime = 1000 * (nextEnemy.time - (this.currentEnemyIndex == 0 ? 0 : this.levelData.enemies[this.currentEnemyIndex - 1]));
+			var nextTime = 1000 * (nextEnemy.time - (this.currentEnemyIndex == 0 ? 0 : this.levelData.enemies[this.currentEnemyIndex - 1].time));
 			this.nextEnemyTimer = this.game.time.events.add(nextTime, function() {
 				this.createEnemy(nextEnemy.x * this.game.world.width, -100, nextEnemy.health, nextEnemy.key, nextEnemy.scale, nextEnemy.speedX, nextEnemy.speedY);
 
