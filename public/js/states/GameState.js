@@ -68,13 +68,6 @@ SpaceHipster.GameState = {
 
 		this.enemyBullets = this.add.group();
 		this.enemyBullets.enableBody = true;
-
-
-		this.enemy = new SpaceHipster.Enemy(this.game, 100, 100, 'greenEnemy', 10, this.enemyBullets);
-		this.enemies.add(this.enemy);
-
-		this.enemy.body.velocity.x = 0;
-		this.enemy.body.velocity.y = 0;
 	},
 	damageEnemy: function(bullet, enemy) {
 		enemy.damage(1);
@@ -83,5 +76,14 @@ SpaceHipster.GameState = {
 	killPlayer: function() {
 		this.player.kill();
 		this.game.state.start('GameState');
+	},
+	createEnemy: function(x, y, health, key, scale, speedX, speedY) {
+		var enemy = this.enemies.getFirstExists(false);
+
+		if(!enemy) {
+			enemy = new SpaceHipster.Enemy(this.game, x, y, key, health, this.enemyBullets);
+			this.enemies.add(enemy);
+		}
+		enemy.reset(x, y, health, key, scale, speedX, speedY);
 	}
 }
