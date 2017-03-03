@@ -33,6 +33,7 @@ SpaceHipster.GameState = {
 		this.shootingTimer = this.game.time.events.loop(Phaser.Timer.SECOND/5, this.createPlayerBullet, this);
 
 		this.initEnemies();
+		this.loadLevel();
 	},
 	update: function() {
 		this.game.physics.arcade.overlap(this.playerBullets, this.enemies, this.damageEnemy, null, this);
@@ -85,5 +86,48 @@ SpaceHipster.GameState = {
 			this.enemies.add(enemy);
 		}
 		enemy.reset(x, y, health, key, scale, speedX, speedY);
+	},
+	loadLevel: function() {
+		this.levelData = {
+			"duration": 35,
+			"enemies": [
+				{
+					"time": 1,
+					"x": 0.05,
+					"health": 6,
+					"speedX": 20,
+					"speedY": 50,
+					"key": "greenEnemy",
+					"scale": 3
+				},
+				{
+					"time": 2,
+					"x": 0.1,
+					"health": 3,
+					"speedX": 50,
+					"speedY": 50,
+					"key": "greenEnemy",
+					"scale": 1
+				},
+				{
+					"time": 3,
+					"x": 0.1,
+					"health": 3,
+					"speedX": 50,
+					"speedY": 50,
+					"key": "greenEnemy",
+					"scale": 1
+				},
+				{
+					"time": 4,
+					"x": 0.1,
+					"health": 3,
+					"speedX": 50,
+					"speedY": 50,
+					"key": "greenEnemy",
+					"scale": 1
+				}
+			]
+		};
 	}
 }
