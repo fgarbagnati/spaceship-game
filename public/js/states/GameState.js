@@ -1,13 +1,16 @@
 var SpaceHipster = SpaceHipster || {};
 
 SpaceHipster.GameState = {
-	init: function() {
+	init: function(currentLevel) {
 		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		this.PLAYER_SPEED = 200;
 		this.BULLET_SPEED = -1000;
+
+		this.numLevels = 3;
+		this.currentLevel = currentLevel ? currentLevel : 1;
 	},
 	preload: function() {
 		this.load.image('space', 'assets/images/space.png');
@@ -130,6 +133,15 @@ SpaceHipster.GameState = {
 				}
 			]
 		};
+		this.endOfLevelTimer = this.game.time.events.add(this.levelData.duration * 1000, function() {
+			if(this.currentLevel < this.numLevels) {
+				this.currentLevel++;
+			} else {
+				this.currentLevel = 1;
+			}
+
+			this.game.state.start('GameState', true, false, this.currentLevel);
+		}, this);
 
 		this.scheduleNextEnemy();
 	},
