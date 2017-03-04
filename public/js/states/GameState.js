@@ -133,6 +133,15 @@ SpaceHipster.GameState = {
 				}
 			]
 		};
+		this.endOfLevelTimer = this.game.time.events.add(this.levelData.duration * 1000, function() {
+			if(this.currentLevel < this.numLevels) {
+				this.currentLevel++;
+			} else {
+				this.currentLevel = 1;
+			}
+
+			this.game.state.start('GameState', true, false, this.currentLevel);
+		}, this);
 
 		this.scheduleNextEnemy();
 	},
