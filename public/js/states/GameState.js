@@ -20,7 +20,9 @@ SpaceHipster.GameState = {
 		this.load.spritesheet('yellowEnemy', 'assets/images/yellow_enemy.png', 50, 46, 3, 1, 1);
 		this.load.spritesheet('redEnemy', 'assets/images/red_enemy.png', 50, 46, 3, 1, 1);
 		this.load.spritesheet('greenEnemy', 'assets/images/green_enemy.png', 50, 46, 3, 1, 1);
-
+		this.load.text('level1', 'assets/data/level1.json');
+		this.load.text('level2', 'assets/data/level2.json');
+		this.load.text('level3', 'assets/data/level3.json');
 	},
 	create: function() {
 		this.background = this.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'space');
