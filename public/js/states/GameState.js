@@ -94,47 +94,7 @@ SpaceHipster.GameState = {
 	},
 	loadLevel: function() {
 		this.currentEnemyIndex = 0;
-		this.levelData = {
-			"duration": 35,
-			"enemies": [
-				{
-					"time": 1,
-					"x": 0.05,
-					"health": 6,
-					"speedX": 20,
-					"speedY": 50,
-					"key": "greenEnemy",
-					"scale": 3
-				},
-				{
-					"time": 2,
-					"x": 0.1,
-					"health": 3,
-					"speedX": 50,
-					"speedY": 50,
-					"key": "greenEnemy",
-					"scale": 1
-				},
-				{
-					"time": 3,
-					"x": 0.1,
-					"health": 3,
-					"speedX": 50,
-					"speedY": 50,
-					"key": "greenEnemy",
-					"scale": 1
-				},
-				{
-					"time": 4,
-					"x": 0.1,
-					"health": 3,
-					"speedX": 50,
-					"speedY": 50,
-					"key": "greenEnemy",
-					"scale": 1
-				}
-			]
-		};
+		this.levelData = JSON.parse(this.game.cache.getText('level' + this.currentLevel));
 		this.endOfLevelTimer = this.game.time.events.add(this.levelData.duration * 1000, function() {
 			if(this.currentLevel < this.numLevels) {
 				this.currentLevel++;
