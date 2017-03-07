@@ -23,6 +23,7 @@ SpaceHipster.GameState = {
 		this.load.text('level1', 'assets/data/level1.json');
 		this.load.text('level2', 'assets/data/level2.json');
 		this.load.text('level3', 'assets/data/level3.json');
+		this.load.audio('orchestra', ['assets/audio/8bit-orchestra.mp3', 'assets/audio/8bit-orchestra.ogg']);
 	},
 	create: function() {
 		this.background = this.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'space');
