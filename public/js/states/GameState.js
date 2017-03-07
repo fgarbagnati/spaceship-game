@@ -85,6 +85,7 @@ SpaceHipster.GameState = {
 	},
 	killPlayer: function() {
 		this.player.kill();
+		this.orchestra.stop();
 		this.game.state.start('GameState');
 	},
 	createEnemy: function(x, y, health, key, scale, speedX, speedY) {
@@ -100,6 +101,7 @@ SpaceHipster.GameState = {
 		this.currentEnemyIndex = 0;
 		this.levelData = JSON.parse(this.game.cache.getText('level' + this.currentLevel));
 		this.endOfLevelTimer = this.game.time.events.add(this.levelData.duration * 1000, function() {
+			this.orchestra.stop();
 			if(this.currentLevel < this.numLevels) {
 				this.currentLevel++;
 			} else {
