@@ -40,6 +40,9 @@ SpaceHipster.GameState = {
 
 		this.initEnemies();
 		this.loadLevel();
+
+		this.orchestra = this.add.audio('orchestra');
+		this.orchestra.play();
 	},
 	update: function() {
 		this.game.physics.arcade.overlap(this.playerBullets, this.enemies, this.damageEnemy, null, this);
